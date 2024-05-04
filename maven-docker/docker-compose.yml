@@ -1,0 +1,32 @@
+services:
+  database-mysql:
+    image: mysql:8.0.34
+    restart: unless-stopped
+    hostname: maven-database
+    container_name: maven-database
+    environment:
+      MYSQL_ROOT_PASSWORD: mysql
+      MYSQL_USER: mysql
+      MYSQL_PASSWORD: mysql
+      MYSQL_DATABASE: mysql
+    ports:
+      - 3306:3306
+    expose:
+      - 3306
+    volumes: 
+      - maven-mysql:/var/lib/mysql
+      - ./mysql-startup:/docker-entrypoint-initdb.d
+    networks:
+      - maven
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost"]
+      interval: 10s
+      retries: 5
+      timeout: 5s
+
+networks:
+  maven:
+
+volumes:
+  maven-mysql:
+    name: maven-mysql
