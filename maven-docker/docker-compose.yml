@@ -1,6 +1,6 @@
 services:
-  database-mysql:
-    image: mysql:8.0.34
+  database:
+    image: mysql:8.4.0
     restart: unless-stopped
     hostname: maven-database
     container_name: maven-database
@@ -24,9 +24,25 @@ services:
       retries: 5
       timeout: 5s
 
+  cloudbeaver:
+    image: dbeaver/cloudbeaver:latest
+    container_name: maven-dbeaver
+    hostname: maven-dbeaver
+    restart: unless-stopped
+    ports:
+      - 8978:8978
+    volumes:
+      - maven-cloudbeaver:/opt/cloudbeaver/workspace
+    networks:
+      - maven
+    depends_on:
+      - database
+
 networks:
   maven:
 
 volumes:
   maven-mysql:
     name: maven-mysql
+  maven-cloudbeaver:
+    name: maven-cloudbeaver

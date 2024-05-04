@@ -2,6 +2,6 @@
 
 cd maven-docker
 
-unzip mysql-startup.zip
+unzip myslq-startup.zip
 
 docker-compose up -d
