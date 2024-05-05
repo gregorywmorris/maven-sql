@@ -88,4 +88,18 @@ WHERE
 GROUP BY
   website_sessions.device_type;
 
--- 
+-- device level weekly trends
+
+SELECT
+  MIN(DATE(created_at)) AS sessions_date,
+  COUNT(CASE WHEN device_type = 'desktop' THEN website_session_id ELSE NULL END) AS dtop_sessions,
+  COUNT(CASE WHEN device_type = 'mobile' THEN website_session_id ELSE NULL END) AS mob_sessions
+FROM
+  website_sessions
+WHERE
+  created_at between '2012-04-15' and '2012-06-09'
+  AND utm_source = 'gsearch'
+  AND utm_campaign = 'nonbrand'
+GROUP BY
+  YEAR(created_at),
+  WEEK(created_at);
