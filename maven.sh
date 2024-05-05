@@ -2,6 +2,6 @@
 
 cd maven-docker
 
-unzip myslq-startup.zip
+unzip -o myslq-startup.zip
 
 docker-compose up -d
