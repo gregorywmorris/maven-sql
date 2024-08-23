@@ -13,7 +13,7 @@ up:
 # Target to run the grant privileges script
 grant_privileges: up
 	@echo "Waiting for MySQL to be ready..."
-	@sleep 45
+	@sleep 90
 	@echo "Running grant privileges script..."
 	@bash $(GRANT_PRIVILEGES_SCRIPT)
 
