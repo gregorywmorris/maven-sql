@@ -8,13 +8,11 @@ services:
       MYSQL_ROOT_PASSWORD: mysql
       MYSQL_USER: mysql
       MYSQL_PASSWORD: mysql
-      MYSQL_DATABASE: mysql
     ports:
       - 3306:3306
-    expose:
-      - 3306
-    volumes: 
+    volumes:
       - maven-mysql:/var/lib/mysql
+      - ./cafe-rewards/data:/csv-files
       - ./mysql-startup:/docker-entrypoint-initdb.d
     networks:
       - maven
@@ -23,7 +21,6 @@ services:
       interval: 10s
       retries: 5
       timeout: 5s
-
   cloudbeaver:
     image: dbeaver/cloudbeaver:latest
     container_name: maven-dbeaver
