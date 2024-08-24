@@ -6,7 +6,7 @@ Maven Analytics Udemy course: Advanced SQL
 
 * Start: `make`
 * Stop: `make down`
-* Clan: `make clean`
+* Clean volumes: `make clean`
 
 [Analyzing Traffic Sources](documents/4_analyzing-traffic-sources.sql)
 
